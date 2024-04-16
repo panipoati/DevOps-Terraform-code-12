@@ -1,0 +1,34 @@
+digraph {
+	compound = "true"
+	newrank = "true"
+	subgraph "root" {
+		"[root] aws_instance.demo1 (expand)" [label = "aws_instance.demo1", shape = "box"]
+		"[root] aws_key_pair.ec2_key (expand)" [label = "aws_key_pair.ec2_key", shape = "box"]
+		"[root] local_file.ssh_key (expand)" [label = "local_file.ssh_key", shape = "box"]
+		"[root] null_resource.n1 (expand)" [label = "null_resource.n1", shape = "box"]
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"]" [label = "provider[\"registry.terraform.io/hashicorp/aws\"]", shape = "diamond"]
+		"[root] provider[\"registry.terraform.io/hashicorp/local\"]" [label = "provider[\"registry.terraform.io/hashicorp/local\"]", shape = "diamond"]
+		"[root] provider[\"registry.terraform.io/hashicorp/null\"]" [label = "provider[\"registry.terraform.io/hashicorp/null\"]", shape = "diamond"]
+		"[root] provider[\"registry.terraform.io/hashicorp/tls\"]" [label = "provider[\"registry.terraform.io/hashicorp/tls\"]", shape = "diamond"]
+		"[root] tls_private_key.my_ec2_key (expand)" [label = "tls_private_key.my_ec2_key", shape = "box"]
+		"[root] aws_instance.demo1 (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] aws_key_pair.ec2_key (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] aws_key_pair.ec2_key (expand)" -> "[root] tls_private_key.my_ec2_key (expand)"
+		"[root] local_file.ssh_key (expand)" -> "[root] aws_key_pair.ec2_key (expand)"
+		"[root] local_file.ssh_key (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/local\"]"
+		"[root] null_resource.n1 (expand)" -> "[root] aws_instance.demo1 (expand)"
+		"[root] null_resource.n1 (expand)" -> "[root] local_file.ssh_key (expand)"
+		"[root] null_resource.n1 (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/null\"]"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_instance.demo1 (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_key_pair.ec2_key (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/local\"] (close)" -> "[root] local_file.ssh_key (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/null\"] (close)" -> "[root] null_resource.n1 (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/tls\"] (close)" -> "[root] tls_private_key.my_ec2_key (expand)"
+		"[root] root" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)"
+		"[root] root" -> "[root] provider[\"registry.terraform.io/hashicorp/local\"] (close)"
+		"[root] root" -> "[root] provider[\"registry.terraform.io/hashicorp/null\"] (close)"
+		"[root] root" -> "[root] provider[\"registry.terraform.io/hashicorp/tls\"] (close)"
+		"[root] tls_private_key.my_ec2_key (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/tls\"]"
+	}
+}
+
